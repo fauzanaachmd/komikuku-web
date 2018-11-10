@@ -1,0 +1,66 @@
+section {
+    padding: 50px 0;
+}
+
+.section-title {
+    margin-bottom: 30px;
+}
+
+.hot-comics-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.hot-comics-item-content {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    padding: 16px;
+    background: rgba(0,0,0,.3);
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+}
+
+.hot-comics-item:hover .hot-comics-item-content {
+    bottom: 0;
+}
+
+.hot-comics-item-content h3 {
+    color: white;
+}
+
+footer .navbar-brand {
+    color: white !important;
+}
+
+.footer-menu a {
+    color: white;
+}
+
+.socmed {
+    display: inline-block;
+}
+
+.socmed li {
+    display: inline-block;
+}
+
+.socmed li a {
+    margin-right: 12px;
+    font-size: 28px;
+    color: white;
+}
+.slick-prev:before, .slick-next:before {
+    color: grey !important;
+}
+
+.slideshow-chapter .slick-slide div div {
+    width: 100%;
+}
+
+.slideshow-chapter .slick-slide div a {
+    width: 100%;
+}
