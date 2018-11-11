@@ -1,5 +1,6 @@
 <?php
     include_once 'constant.php';
+    include_once 'action/connection.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,6 +44,8 @@
 <?php
     if($uri_segment[3] == 'sign-in') {
         include_once 'pages/sign-in.php';
+    }elseif($uri_segment[3] == 'sign-up') {
+        include_once 'pages/sign-up.php';
     }elseif($uri_segment[3] == 'comic') {
         include_once 'pages/comic.php';
     }else{
@@ -117,9 +120,17 @@
     </div>
 </footer>
 
+<?php
+    if($_GET['register'] == 'success') {
+        echo modal('Registration Success', 'Now you can sign in with your account. Enjoy read.');
+    }elseif($_GET['register'] == 'emailNotAvailable') {
+        echo modal('Failed To Register', 'Email already registered');
+    }
+?>
+
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/jquery-3.3.1.min.js"></script>
 <!--<script src="js/jquery-3.3.1.slim.min.js" type="text/javascript"></script>-->
-<script src="<?php echo ASSET_URL; ?>js/popper.min.js" type="text/javascript"></script>
+<!--<script src="--><?php //echo ASSET_URL; ?><!--js/popper.min.js" type="text/javascript"></script>-->
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/slick.js"></script>
 <script type="text/javascript">
@@ -135,9 +146,27 @@
             slideToShow: 1,
             slideToScroll: 1
         });
+
         $('.slideshow-chapter').slick({
             arrows: true
         });
+
+        <?php if($uri_segment[3] == 'sign-in' || $uri_segment[3] == 'sign-up') { ?>
+        $('.form-text').hide();
+        $('#confirm-password, #password').on('change paste keyup', function() {
+            var pass = $('#password').val();
+            var confirmPass = $('#confirm-password').val();
+            if(pass === confirmPass) {
+                $('#password-message').hide();
+            }else{
+                $('#password-message').fadeIn();
+            }
+        });
+        <?php } ?>
+
+        <?php if(isset($_GET['register'])) { ?>
+        $('#register-modal').modal('show');
+        <?php }?>
     });
 </script>
 </body>

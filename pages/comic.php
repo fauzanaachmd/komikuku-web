@@ -11,36 +11,32 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-chapter">
                     <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Cover</th>
-                        <th scope="col">Episode</th>
-                        <th scope="col">Tanggal</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Cover</th>
+                            <th scope="col">Episode</th>
+                            <th scope="col">Tanggal</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr onclick="window.location='<?php echo BASE_URL; ?>/comic/1/chapter/1'">
-                        <th scope="row">1</th>
-                        <td>
-                            <img src="http://via.placeholder.com/100x100" alt="Slideshow Image">
-                        </td>
-                        <td><a>Episode 1</a></td>
-                        <td>11 Januari 2018</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                        <tr onclick="window.location='<?php echo BASE_URL; ?>/comic/1/chapter/1'">
+                            <th scope="row">1</th>
+                            <td>
+                                <img src="http://via.placeholder.com/100x100" alt="Slideshow Image">
+                            </td>
+                            <td><a>Episode 1</a></td>
+                            <td>11 Januari 2018</td>
+                        </tr>
+                        <tr onclick="window.location='<?php echo BASE_URL; ?>/comic/1/chapter/1'">
+                            <th scope="row">1</th>
+                            <td>
+                                <img src="http://via.placeholder.com/100x100" alt="Slideshow Image">
+                            </td>
+                            <td><a>Episode 1</a></td>
+                            <td>11 Januari 2018</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
