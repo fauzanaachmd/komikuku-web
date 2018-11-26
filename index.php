@@ -26,13 +26,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item <?php echo $uri_segment[3] == '' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL; ?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item <?php echo $uri_segment[3] == 'publish' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL; ?>/publish">Publish</a>
+                <a class="nav-link" href="<?php echo BASE_URL ?>/publish">Publish</a>
             </li>
             <li class="nav-item <?php echo $uri_segment[3] == 'sign-in' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL; ?>/sign-in">Sign In</a>
+                <a class="nav-link" href="<?php echo BASE_URL ?>/sign-in">Sign In</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
