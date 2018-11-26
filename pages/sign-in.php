@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small id="edamailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-                <div class="mt-3 text-center">
+                <div class	="mt-3 text-center">
                     <p>
                         Didn't have any account?
                     </p>
