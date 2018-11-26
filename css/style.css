@@ -68,3 +68,7 @@ footer .navbar-brand {
 .table-chapter tbody tr {
     cursor: pointer;
 }
+
+#gambar {
+   background-color:  black;
+}

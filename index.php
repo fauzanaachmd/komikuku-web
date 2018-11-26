@@ -42,14 +42,10 @@
     </div>
 </nav>
 <?php
-    if($uri_segment[3] == 'sign-in') {
-        include_once 'pages/sign-in.php';
-    }elseif($uri_segment[3] == 'sign-up') {
-        include_once 'pages/sign-up.php';
-    }elseif($uri_segment[3] == 'comic') {
-        include_once 'pages/comic.php';
-    }else{
+    if($uri_segment[3] == '') {
         include_once 'pages/home.php';
+    }else{
+        include_once 'pages/'.$uri_segment[3].'.php';
     }
 ?>
 <footer class="bg-dark py-5">
