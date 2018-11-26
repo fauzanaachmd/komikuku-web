@@ -1,8 +1,8 @@
 <?php
 
-$servername = '127.0.0.1';
-$username = 'root';
-$password= '1234';
+$servername = 'localhost';
+$username = 'localhost';
+$password="";
 $dbname = 'komikuku_db';
 
 try {
