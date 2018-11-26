@@ -26,13 +26,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item <?php echo $uri_segment[3] == '' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo BASE_URL; ?>">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item <?php echo $uri_segment[3] == 'publish' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL ?>/publish">Publish</a>
+                <a class="nav-link" href="<?php echo BASE_URL; ?>/publish">Publish</a>
             </li>
             <li class="nav-item <?php echo $uri_segment[3] == 'sign-in' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL ?>/sign-in">Sign In</a>
+                <a class="nav-link" href="<?php echo BASE_URL; ?>/sign-in">Sign In</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -42,14 +42,10 @@
     </div>
 </nav>
 <?php
-    if($uri_segment[3] == 'sign-in') {
-        include_once 'pages/sign-in.php';
-    }elseif($uri_segment[3] == 'sign-up') {
-        include_once 'pages/sign-up.php';
-    }elseif($uri_segment[3] == 'comic') {
-        include_once 'pages/comic.php';
-    }else{
+    if($uri_segment[3] == '') {
         include_once 'pages/home.php';
+    }else{
+        include_once 'pages/'.$uri_segment[3].'.php';
     }
 ?>
 <footer class="bg-dark py-5">

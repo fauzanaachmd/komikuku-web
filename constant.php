@@ -3,6 +3,7 @@
     const ASSET_URL = 'http://localhost/komikuku-web/';
     $GLOBALS['uri_segment'] = explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
+//    echo $_SERVER['REQUEST_URI'];exit;
     function modal($title = '', $content = '') {
         echo '
         <div id="register-modal" class="modal fade" tabindex="-1" role="dialog">
