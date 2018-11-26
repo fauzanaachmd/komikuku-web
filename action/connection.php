@@ -2,7 +2,7 @@
 
 $servername = '127.0.0.1';
 $username = 'root';
-$password = '1234';
+$password= '1234';
 $dbname = 'komikuku_db';
 
 try {
