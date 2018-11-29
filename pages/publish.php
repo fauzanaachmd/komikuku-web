@@ -1,14 +1,20 @@
+<?php if (isset($_SESSION['is_login'])){ ?>
+    
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-sm-5 ">
              <div class="form-group">
             <label for="thumbnail"> Thumbnail </label>
-            <div id="gambar" > 
-            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Upload</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
             </div>
             
-           <p> Pilih Gambar untuk di unggah  Geser dan taruh gambar disini
-            </p> 
         </div>
         <div class="col-sm-6">
             <div class="form-group">
@@ -24,12 +30,26 @@
             <div class="form-group">
             <label>Judul Serial</label>
             
-            <textarea rows="4" cols="80">
+            <textarea rows="4" cols="80" >
                     
             </textarea>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Buat Serial</button>
+            <a class="btn btn-primary" href="<?php echo BASE_URL ?>/Episode"> Next</a>
         </div>
     </div>
 </div>
+
+<?php } else { ?>
+    <div class="container py-5">
+        <div class=" row justify-content-center ">
+            <div class="col-sm-5">
+            <h5 style="justify ='center"> Silahkan Login terlebih dahulu</h5>
+                
+            <a class="btn btn-primary" href="<?php echo BASE_URL ?>/sign-in">LOGIN</a>
+            </div>
+        </div>
+        
+        </div>
+<?php } ?> 
+    
