@@ -1,6 +1,6 @@
 <?php
-    include_once 'constant.php';
-    include_once 'action/connection.php';
+include_once 'constant.php';
+include_once 'action/connection.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +17,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Komikuku</a>
+    <a class="navbar-brand" href="<?php echo BASE_URL; ?>">Komikuku</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,15 +25,27 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            <li class="nav-item <?php echo $uri_segment[3] == '' ? 'active':''; ?>">
+            <li class="nav-item <?php echo $uri_segment[3] == '' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item <?php echo $uri_segment[3] == 'publish' ? 'active':''; ?>">
+            <li class="nav-item <?php echo $uri_segment[3] == 'publish' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo BASE_URL ?>/publish">Publish</a>
             </li>
-            <li class="nav-item <?php echo $uri_segment[3] == 'sign-in' ? 'active':''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL ?>/sign-in">Sign In</a>
-            </li>
+            <?php if ($_SESSION['is_login']) { ?>
+                <li class="nav-item dropdown <?php echo $uri_segment[3] == 'profile' ? 'active' : ''; ?>">
+                    <a class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       href="#">Hi, <?php $fullname = explode(' ', $_SESSION['nama']);
+                        echo $fullname[0]; ?></a>
+                    <div class="dropdown-menu" id="profileDropdwn">
+                        <a class="dropdown-item" href="<?php echo BASE_URL; ?>/profile">Profile</a>
+                        <a class="dropdown-item" href="<?php echo ASSET_URL; ?>/action/signOutProcess.php">Sign Out</a>
+                    </div>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item <?php echo $uri_segment[3] == 'sign-in' ? 'active' : ''; ?>">
+                    <a class="nav-link" href="<?php echo BASE_URL ?>/sign-in">Sign In</a>
+                </li>
+            <?php } ?>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -41,14 +53,17 @@
         </form>
     </div>
 </nav>
-<?php
-    if($uri_segment[3] == '') {
+<div class="wrapper">
+    <?php
+    if ($uri_segment[3] == '') {
         include_once 'pages/home.php';
-    }else{
-        include_once 'pages/'.$uri_segment[3].'.php';
+    } else {
+        include_once 'pages/' . $uri_segment[3] . '.php';
     }
-?>
-<footer class="bg-dark py-5">
+    ?>
+    <div class="push"></div>
+</div>
+<footer class="bg-dark py-5 <?php echo $uri_segment[3] == 'sign-in' ? 'fixed-bottom' : ''; ?>">
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
@@ -117,11 +132,13 @@
 </footer>
 
 <?php
-    if($_GET['register'] == 'success') {
-        echo modal('Registration Success', 'Now you can sign in with your account. Enjoy read.');
-    }elseif($_GET['register'] == 'emailNotAvailable') {
-        echo modal('Failed To Register', 'Email already registered');
-    }
+if ($_GET['register'] == 'success') {
+    echo modal('Registration Success', 'Now you can sign in with your account. Enjoy read.');
+} elseif ($_GET['register'] == 'emailNotAvailable') {
+    echo modal('Failed To Register', 'Email already registered');
+} elseif ($_GET['register'] == 'noEmail') {
+    echo modal('No Email', 'There is no email like that, pelase sign up before');
+}
 ?>
 
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/jquery-3.3.1.min.js"></script>
@@ -129,8 +146,9 @@
 <!--<script src="--><?php //echo ASSET_URL; ?><!--js/popper.min.js" type="text/javascript"></script>-->
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/slick.js"></script>
+<script type="text/javascript" src="<?php echo ASSET_URL; ?>js/dropzone.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.slideshow').slick({
             dots: true,
             infinite: true,
@@ -149,12 +167,12 @@
 
         <?php if($uri_segment[3] == 'sign-in' || $uri_segment[3] == 'sign-up') { ?>
         $('.form-text').hide();
-        $('#confirm-password, #password').on('change paste keyup', function() {
+        $('#confirm-password, #password').on('change paste keyup', function () {
             var pass = $('#password').val();
             var confirmPass = $('#confirm-password').val();
-            if(pass === confirmPass) {
+            if (pass === confirmPass) {
                 $('#password-message').hide();
-            }else{
+            } else {
                 $('#password-message').fadeIn();
             }
         });
