@@ -74,13 +74,20 @@ if ($_SESSION['is_login']) {
             </div>
 <<<<<<< HEAD
             <div class="form-group">
-            <label>Judul Serial</label>
-            
-            <textarea rows="4" cols="80" >
+
+            <div class="form-group">
+                <label for="Judul"> Judul </label>
+                <input type="text" class="form-control" id="Judul" placeholder="Maksimal 60 Karakter">
+            </div>
                     
-            </textarea>
             </div>
             <br>
+            <div class="form-group">
+                <label for="sinopsis"> Sinopsis </label>
+                <textarea class="form-control" id="sinopsis" rows="3"></textarea>
+            </div>
+            
+            
             <a class="btn btn-primary" href="<?php echo BASE_URL ?>/Episode"> Next</a>
         </div>
     </div>
