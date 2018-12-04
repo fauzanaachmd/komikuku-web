@@ -3,30 +3,27 @@
         <div class="row">
             <div class="col-12">
                 <div class="slideshow py-4">
+                    <?php
+                    $slidestmt = $conn->prepare("SELECT a.*, b.nama, b.genre FROM slide_banner a JOIN serial b ON a.serial_id=b.serial_id ORDER BY a.created_at DESC LIMIT 0,4");
+                    $slidestmt->execute();
+
+                    $result = $slidestmt->fetchAll();
+
+                    foreach($result as $row) {
+                    ?>
                     <div>
                         <div class="row align-items-center">
                             <div class="col-sm-8">
-                                <img src="http://via.placeholder.com/1024x500" alt="Slideshow Image" width="100%">
+                                <img src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $row['image_Banner']) && $row['image_Banner'] != '' ? ASSET_URL . 'images/eps/' . $row['image_Banner'] : 'http://via.placeholder.com/1024x500'; ?>" alt="<?php echo $row['nama'] ?>" width="100%">
                             </div>
                             <div class="col-sm-4">
-                                <h5>One Broken Sword Will Save All</h5>
-                                <h3>Room Of Swords</h3>
-                                <a href="<?php echo BASE_URL; ?>/comic/1" class="btn btn-primary">Read Now</a>
+                                <h5><?php echo $row['genre']; ?></h5>
+                                <h3><?php echo $row['nama'] ?></h3>
+                                <a href="<?php echo BASE_URL; ?>/comic/<?php echo $row['serial_id'] ?>" class="btn btn-primary">Read Now</a>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="row align-items-center">
-                            <div class="col-sm-8">
-                                <img src="http://via.placeholder.com/1024x500" alt="Slideshow Image" width="100%">
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>One Broken Sword Will Save All</h5>
-                                <h3>Room Of Swords 2</h3>
-                                <a href="#" class="btn btn-primary">Read Now</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
