@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+
 include_once 'constant.php';
 include_once 'action/connection.php';
 ?>
@@ -61,7 +66,6 @@ include_once 'action/connection.php';
         include_once 'pages/' . $uri_segment[3] . '.php';
     }
     ?>
-    <div class="push"></div>
 </div>
 <footer class="bg-dark py-5 <?php echo $uri_segment[3] == 'sign-in' ? 'fixed-bottom' : ''; ?>">
     <div class="container">
