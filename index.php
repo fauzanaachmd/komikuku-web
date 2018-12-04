@@ -143,6 +143,12 @@ if ($_GET['register'] == 'success') {
 } elseif ($_GET['register'] == 'noEmail') {
     echo modal('No Email', 'There is no email like that, pelase sign up before');
 }
+
+if($_GET['message']=='success') {
+    echo modal('Update Success', 'Profil Anda berhasil diubah.');
+}elseif($_GET['message']=='failed') {
+    echo modal('Update Failed', 'Password lama Anda salah.');
+}
 ?>
 
 <script type="text/javascript" src="<?php echo ASSET_URL; ?>js/jquery-3.3.1.min.js"></script>
@@ -169,7 +175,7 @@ if ($_GET['register'] == 'success') {
             arrows: true
         });
 
-        <?php if($uri_segment[3] == 'sign-in' || $uri_segment[3] == 'sign-up') { ?>
+        <?php if($uri_segment[3] == 'sign-in' || $uri_segment[3] == 'sign-up' || $uri_segment[3] == 'profile') { ?>
         $('.form-text').hide();
         $('#confirm-password, #password').on('change paste keyup', function () {
             var pass = $('#password').val();
@@ -182,7 +188,7 @@ if ($_GET['register'] == 'success') {
         });
         <?php } ?>
 
-        <?php if(isset($_GET['register'])) { ?>
+        <?php if(isset($_GET['register']) || isset($_GET['message'])) { ?>
         $('#register-modal').modal('show');
         <?php }?>
     });

@@ -6,12 +6,6 @@ $email = $_POST['email'];
 $nama = $_POST['fullname'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-//if(password_verify($password2, $password)) {
-//    echo 'sama';
-//}else{
-//    echo 'salah';
-//}
-
 $stmt = $conn->prepare("SELECT nama, email, password FROM User");
 $stmt->execute();
 

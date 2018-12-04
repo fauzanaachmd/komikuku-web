@@ -1,7 +1,7 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-sm-6">
-            <form action="<?php echo ASSET_URL; ?>action/createSinopsisProcess.php" method="post">
+            <form action="<?php echo ASSET_URL; ?>action/createSinopsisProcess.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Genre</label>
                     <select class="form-control" required name="genre">
@@ -19,6 +19,10 @@
                 <div class="form-group">
                     <label for="sinopsis">Sinopsis</label>
                     <textarea class="form-control" name="sinopsis" id="sinopsis" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="sinopsis">Thumbnail</label>
+                    <input class="form-control" type="file" name="thumbnail">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Buat Serial</button>

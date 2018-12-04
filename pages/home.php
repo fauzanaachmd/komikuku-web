@@ -36,6 +36,8 @@
                 <h1 class="section-title" align="center">Hot Comics</h1>
             </div>
             <div class="row no-gutters">
+                <?php
+                ?>
                 <div class="col-sm-4 hot-comics-item">
                     <a href="#">
                         <img src="http://via.placeholder.com/400x400" alt="image 1" width="100%">
@@ -88,27 +90,22 @@
             </div>
         </div>
         <div class="row">
+            <?php
+            $freshstmt = $conn->prepare("SELECT * FROM serial ORDER BY created_at LIMIT 0,3");
+            $freshstmt->execute();
+
+            $result = $freshstmt->fetchAll();
+
+            foreach($result as $row) {
+            ?>
             <div class="col-sm-4 text-sm-center">
-                <img class="rounded-circle mb-5" width="200px" src="images/400x400.png" alt="Foto komik fresh coming">
-                <h3>Judul Komik Fresh </h3>
+                <img class="rounded-circle mb-5" width="200px" src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $row['thumbnail']) && $row['thumbnail'] != '' ? ASSET_URL . '/images/eps/' . $row['thumbnail'] : ASSET_URL.'images/400x400.png'; ?>" alt="Foto komik fresh coming">
+                <h3><?php echo $row['nama']; ?></h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolores eaque eius est excepturi facere fugiat harum iure libero maiores minus nemo nesciunt porro provident quidem saepe, vel. Delectus, eius.
+                    <?php echo substr($row['sinopsis'], 0, 250).' ...' ?>
                 </p>
             </div>
-            <div class="col-sm-4 text-sm-center">
-                <img class="rounded-circle mb-5" width="200px" src="images/400x400.png" alt="Foto komik fresh coming">
-                <h3>Judul Komik Fresh </h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolores eaque eius est excepturi facere fugiat harum iure libero maiores minus nemo nesciunt porro provident quidem saepe, vel. Delectus, eius.
-                </p>
-            </div>
-            <div class="col-sm-4 text-sm-center">
-                <img class="rounded-circle mb-5" width="200px" src="images/400x400.png" alt="Foto komik fresh coming">
-                <h3>Judul Komik Fresh </h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolores eaque eius est excepturi facere fugiat harum iure libero maiores minus nemo nesciunt porro provident quidem saepe, vel. Delectus, eius.
-                </p>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>
