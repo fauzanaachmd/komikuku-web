@@ -31,12 +31,15 @@ include_once 'action/connection.php';
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item <?php echo $uri_segment[3] == '' ? 'active' : ''; ?>">
-                <a class="nav-link" href="<?php echo BASE_URL ?>">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo BASE_URL ?>">Home</a>
+            </li>
+            <li class="nav-item <?php echo $uri_segment[3] == 'about-us' ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo BASE_URL . '/about-us'; ?>">About Us</a>
             </li>
             <li class="nav-item <?php echo $uri_segment[3] == 'publish' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo BASE_URL ?>/publish">Publish</a>
             </li>
-            <?php if ($_SESSION['is_login']) { ?>
+            <?php if (isset($_SESSION['is_login']) && $_SESSION['is_login']) { ?>
                 <li class="nav-item dropdown <?php echo $uri_segment[3] == 'profile' ? 'active' : ''; ?>">
                     <a class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        href="#">Hi, <?php $fullname = explode(' ', $_SESSION['nama']);
@@ -52,10 +55,10 @@ include_once 'action/connection.php';
                 </li>
             <?php } ?>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<!--        <form class="form-inline my-2 my-lg-0">-->
+<!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
     </div>
 </nav>
 <div class="wrapper">

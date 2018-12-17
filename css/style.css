@@ -13,6 +13,7 @@ section {
 .hot-comics-item {
     position: relative;
     overflow: hidden;
+    max-height: 380px;
 }
 
 .hot-comics-item-content {

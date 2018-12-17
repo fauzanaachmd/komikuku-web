@@ -5,9 +5,10 @@ include '../constant.php';
 
 $user_id = $_SESSION['user_id'];
 
-$password = $_POST[''];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$stmt = $conn->prepare("SELECT nama, email, password, user_id FROM User WHERE user_id=$user_id");
+
+$stmt = $conn->prepare("SELECT nama, email, password, user_id FROM user WHERE user_id=$user_id");
 $stmt->execute();
 
 $result = $stmt->fetch();

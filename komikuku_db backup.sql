@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(45) NOT NULL,
+  `nama` varchar(45) NOT NULL,
+  `photo` varchar(100) DEFAULT NULL,
+  `password` varchar(60) NOT NULL,
+  `user_level` enum('admin','creator','reader') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (7,'fauzan@gmail.com','Achmad Fauzan',NULL,'$2y$10$wUlG8O2Ut3b6ycXVL5FLuOFSJZ8JKD32/P7ptOVvDU3qnUh/6H60u','reader','2018-11-11 17:17:23','2018-12-03 06:20:18'),(8,'milda@gmail.com','Milda Apprilia','Capture.PNG','$2y$10$wUlG8O2Ut3b6ycXVL5FLuOFSJZ8JKD32/P7ptOVvDU3qnUh/6H60u','reader','2018-11-13 06:18:38','2018-12-04 06:49:29'),(9,'irfan@gmail.com','Irfan S',NULL,'$2y$10$XC/DJxI2SgAbPVuwtJ9Oe.B/L/0QHuh6Kx74bbJ3CBYtZCtsyrCKK','reader','2018-11-21 08:23:26','2018-11-21 08:23:26');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `episode`
 --
 
@@ -34,7 +65,7 @@ CREATE TABLE `episode` (
   PRIMARY KEY (`epsiode_id`),
   KEY `serial_episode_fk_idx` (`serial_id`),
   CONSTRAINT `serial_episode_fk` FOREIGN KEY (`serial_id`) REFERENCES `serial` (`serial_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +74,7 @@ CREATE TABLE `episode` (
 
 LOCK TABLES `episode` WRITE;
 /*!40000 ALTER TABLE `episode` DISABLE KEYS */;
-INSERT INTO `episode` VALUES (1,'Mulai Hari Ini Cantik','2018-11-26',1,'epscantik.jpg',10,'2018-11-26 14:27:05','2018-12-10 10:26:17'),(2,'My Oppa Is an Idol','2018-11-26',2,'epsoppa.jpg',3,'2018-11-26 14:52:00','2018-12-04 15:01:47'),(3,'My Oppa Is an Idol 2','2018-11-26',3,'epsoppa.jpg',4,'2018-12-03 07:30:27','2018-12-14 04:10:26'),(4,'Wajahmu Mengalihkan Duniaku','2018-11-26',9,'epsoppa.jpg',4,'2018-12-12 11:15:55','2018-12-14 04:01:10'),(5,'Now Oppa Is Odol','2018-12-13',2,'MySpotifyWrapped2018.jpg',0,'2018-12-12 17:22:17','2018-12-12 17:22:17'),(6,'Oppa Baka','2018-12-13',2,'MySpotifyWrapped2018.jpg',0,'2018-12-12 17:23:49','2018-12-12 17:23:49'),(7,'Ketemu Nasgor Muka Rata di Pondok Indah','2018-12-14',3,'154460334374612211171.jpg',2,'2018-12-14 03:59:31','2018-12-14 04:00:08');
+INSERT INTO `episode` VALUES (1,'Mulai Hari Ini Cantik','2018-11-26',1,'epscantik.jpg',9,'2018-11-26 14:27:05','2018-12-04 06:48:13'),(2,'My Oppa Is an Idol','2018-11-26',2,'epsoppa.jpg',2,'2018-11-26 14:52:00','2018-12-04 06:45:06'),(3,'My Oppa Is an Idol 2','2018-11-26',2,'epsoppa.jpg',0,'2018-12-03 07:30:27','2018-12-03 07:30:27');
 /*!40000 ALTER TABLE `episode` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +98,7 @@ CREATE TABLE `serial` (
   PRIMARY KEY (`serial_id`),
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +107,7 @@ CREATE TABLE `serial` (
 
 LOCK TABLES `serial` WRITE;
 /*!40000 ALTER TABLE `serial` DISABLE KEYS */;
-INSERT INTO `serial` VALUES (1,'I Am Gangnam Beauty','10_EC8DB8EB84A4EC9DBC_ipad.jpg','Romance','Terlahir kembali dengan wajah lebih cantik!','20 November 2018',8,'2018-11-26 14:22:33','2018-12-04 01:46:06'),(2,'My Oppa is an Idol','letsplay.jpg','Romance','Dia itu...','21 November 2018',8,'2018-11-26 14:50:39','2018-12-04 01:46:06'),(3,'Tukang Nasi Goreng Muka Rata','fatality.jpg','horror','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fermentum elit dolor, vel consectetur nisl scelerisque vel. Integer finibus mollis cursus. Duis sollicitudin lacus nisl, at placerat nisl varius sit amet. Proin ullamcorper massa metus, ac egestas arcu gravida et. Mauris id nulla mauris. Aenean at elementum purus. Praesent porttitor ante leo, eget faucibus eros tincidunt eget. Nulla aliquam urna diam, et imperdiet tellus facilisis et. Aenean sagittis purus at urna elementum, at pulvinar arcu rutrum. Quisque lacinia volutpat augue ut tincidunt.',NULL,8,'2018-12-03 16:25:58','2018-12-04 01:46:06'),(4,'Roman Picisan','thumb_ipad.jpg','romantis','asdfasdfasdf',NULL,8,'2018-12-03 16:38:34','2018-12-04 01:46:06'),(7,'ddddd','Promotion mockup flow-2.png','comedy','ddddddd',NULL,8,'2018-12-04 06:12:23','2018-12-04 06:12:23'),(9,'dora','WhatsApp-Image-2018-06-04-at-17.24.00.png','action','dora',NULL,8,'2018-12-04 15:01:27','2018-12-04 15:01:27');
+INSERT INTO `serial` VALUES (1,'I Am Gangnam Beauty','10_EC8DB8EB84A4EC9DBC_ipad.jpg','Romance','Terlahir kembali dengan wajah lebih cantik!','20 November 2018',8,'2018-11-26 14:22:33','2018-12-04 01:46:06'),(2,'My Oppa is an Idol','letsplay.jpg','Romance','Dia itu...','21 November 2018',8,'2018-11-26 14:50:39','2018-12-04 01:46:06'),(3,'Tukang Nasi Goreng Muka Rata','fatality.jpg','horror','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fermentum elit dolor, vel consectetur nisl scelerisque vel. Integer finibus mollis cursus. Duis sollicitudin lacus nisl, at placerat nisl varius sit amet. Proin ullamcorper massa metus, ac egestas arcu gravida et. Mauris id nulla mauris. Aenean at elementum purus. Praesent porttitor ante leo, eget faucibus eros tincidunt eget. Nulla aliquam urna diam, et imperdiet tellus facilisis et. Aenean sagittis purus at urna elementum, at pulvinar arcu rutrum. Quisque lacinia volutpat augue ut tincidunt.',NULL,8,'2018-12-03 16:25:58','2018-12-04 01:46:06'),(4,'Roman Picisan','thumb_ipad.jpg','romantis','asdfasdfasdf',NULL,8,'2018-12-03 16:38:34','2018-12-04 01:46:06'),(7,'ddddd','Promotion mockup flow-2.png','comedy','ddddddd',NULL,8,'2018-12-04 06:12:23','2018-12-04 06:12:23'),(8,'asdf','WhatsApp Image 2018-03-29 at 21.35.58.jpeg','comedy','asdf',NULL,8,'2018-12-04 06:48:56','2018-12-04 06:48:56');
 /*!40000 ALTER TABLE `serial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,36 +140,6 @@ INSERT INTO `slide_banner` VALUES (1,'Bigbanner_BtUs.png',1,'2018-11-26 14:31:13
 /*!40000 ALTER TABLE `slide_banner` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) NOT NULL,
-  `nama` varchar(45) NOT NULL,
-  `photo` varchar(100) DEFAULT NULL,
-  `password` varchar(60) NOT NULL,
-  `user_level` enum('admin','creator','reader') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (7,'fauzan@gmail.com','Achmad Fauzan',NULL,'$2y$10$wUlG8O2Ut3b6ycXVL5FLuOFSJZ8JKD32/P7ptOVvDU3qnUh/6H60u','reader','2018-11-11 17:17:23','2018-12-03 06:20:18'),(8,'milda@gmail.com','Milda Aprilia Nursin','Capture.PNG','$2y$10$hOKt5yDbrQ.t1XWoR9w2buODjc21JxTkCo7J5Koo8mHLMWxnXam3G','reader','2018-11-13 06:18:38','2018-12-12 14:48:54'),(9,'irfan@gmail.com','Irfan S',NULL,'$2y$10$XC/DJxI2SgAbPVuwtJ9Oe.B/L/0QHuh6Kx74bbJ3CBYtZCtsyrCKK','reader','2018-11-21 08:23:26','2018-11-21 08:23:26');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -149,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-14 13:24:04
+-- Dump completed on 2018-12-04 19:11:54

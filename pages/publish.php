@@ -20,23 +20,25 @@ if ($_SESSION['is_login']) {
                             <th>Genre</th>
                             <th>Jumlah Episode</th>
                             <th>Tanggal dibuat</th>
+                            <th>Hapus</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $user_id = $_SESSION['user_id'];
-                        $stmt = $conn->prepare("SELECT a.*, COUNT(b.serial_id) as 'jmlEpisode' FROM serial a LEFT JOIN episode b ON a.serial_id=b.serial_id WHERE a.user_id=$user_id GROUP BY a.serial_id");
-                        $stmt->execute();
+                        $stmtSerial = $conn->prepare("SELECT a.*, COUNT(b.serial_id) as 'jmlEpisode' FROM serial a LEFT JOIN episode b ON a.serial_id=b.serial_id WHERE a.user_id=$user_id GROUP BY a.serial_id");
+                        $stmtSerial->execute();
 
-                        $result = $stmt->fetchAll();
+                        $resultSerial = $stmtSerial->fetchAll();
 
-                        foreach($result as $row) {
+                        foreach($resultSerial as $row) {
                             ?>
                             <tr onclick="window.location='<?php echo BASE_URL; ?>/comic/<?php echo $row['serial_id'] ?>'">
                                 <td><?php echo $row['nama']; ?></td>
                                 <td><?php echo $row['genre']; ?></td>
                                 <td><?php echo $row['jmlEpisode']; ?></td>
                                 <td><?php echo date_format(date_create($row['created_at']), "t M Y"); ?></td>
+                                <td><a href="<?php echo ASSET_URL . 'action/deleteEpisode.php?id=' . $row['serial_id']; ?>">Hapus Episode Ini</a></td>
                             </tr>
                         <?php } ?>
                         </tbody>

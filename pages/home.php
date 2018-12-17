@@ -37,44 +37,27 @@
             </div>
             <div class="row no-gutters">
                 <?php
+                $slidestmt = $conn->prepare("SELECT a.*, COUNT(b.serial_id) as 'jmlEpisode', SUM(b.read_count) as 'jmlRead' FROM serial a LEFT JOIN episode b ON a.serial_id=b.serial_id GROUP BY a.serial_id ORDER BY jmlRead DESC LIMIT 0,5");
+                $slidestmt->execute();
+
+                $result = $slidestmt->fetchAll();
+
+                for($i=1;$i<5;$i++) {
                 ?>
                 <div class="col-sm-4 hot-comics-item">
-                    <a href="#">
-                        <img src="http://via.placeholder.com/400x400" alt="image 1" width="100%">
+                    <a href="<?php echo BASE_URL . '/comic/' . $result[$i]['serial_id']; ?>">
+                        <img src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $result[$i]['thumbnail']) && $result[$i]['thumbnail'] != '' ? ASSET_URL . 'images/eps/' . $result[$i]['thumbnail'] : 'http://via.placeholder.com/400x400'; ?>" alt="<?php echo $result[$i]['nama']; ?>" width="100%">
                         <div class="hot-comics-item-content">
-                            <h3 class="m-0">Judul Komiknya</h3>
+                            <h3 class="m-0"><?php echo $result[$i]['nama']; ?></h3>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-4 hot-comics-item">
-                    <a href="#">
-                        <img src="http://via.placeholder.com/400x400" alt="image 1" width="100%">
-                        <div class="hot-comics-item-content">
-                            <h3 class="m-0">Judul Komiknya</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-4 hot-comics-item">
-                    <a href="#">
-                        <img src="http://via.placeholder.com/400x400" alt="image 1" width="100%">
-                        <div class="hot-comics-item-content">
-                            <h3 class="m-0">Judul Komiknya</h3>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-4 hot-comics-item">
-                    <a href="#">
-                        <img src="http://via.placeholder.com/400x400" alt="image 1" width="100%">
-                        <div class="hot-comics-item-content">
-                            <h3 class="m-0">Judul Komiknya</h3>
-                        </div>
-                    </a>
-                </div>
+                <?php } ?>
                 <div class="col-sm-8 hot-comics-item">
                     <a href="#">
-                        <img src="http://via.placeholder.com/760x380" alt="image 1" width="100%">
+                        <img src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $result[0]['thumbnail']) && $result[0]['thumbnail'] != '' ? ASSET_URL . 'images/eps/' . $result[0]['thumbnail'] : 'http://via.placeholder.com/400x400'; ?>" alt="image 1" width="100%">
                         <div class="hot-comics-item-content">
-                            <h3 class="m-0">Judul Komiknya</h3>
+                            <h3 class="m-0"><?php echo $result[0]['nama']; ?></h3>
                         </div>
                     </a>
                 </div>
@@ -99,7 +82,7 @@
             foreach($result as $row) {
             ?>
             <div class="col-sm-4 text-sm-center">
-                <img class="rounded-circle mb-5" width="200px" src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $row['thumbnail']) && $row['thumbnail'] != '' ? ASSET_URL . '/images/eps/' . $row['thumbnail'] : ASSET_URL.'images/400x400.png'; ?>" alt="Foto komik fresh coming">
+                <img class="rounded-circle mb-5" width="200px" src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $row['thumbnail']) && $row['thumbnail'] != '' ? ASSET_URL . 'images/eps/' . $row['thumbnail'] : ASSET_URL.'images/400x400.png'; ?>" alt="Foto komik fresh coming">
                 <h3><?php echo $row['nama']; ?></h3>
                 <p>
                     <?php echo substr($row['sinopsis'], 0, 250).' ...' ?>

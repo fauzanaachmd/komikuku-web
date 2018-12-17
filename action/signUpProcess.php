@@ -16,7 +16,7 @@ if($email == $result[0][1]) {
     header('Location: ' . BASE_URL . '/sign-up?register=emailNotAvailable');
 }else{
     try {
-        $sql = "INSERT INTO User (email, nama, password, user_level) VALUES ('$email', '$nama', '$password', 'reader')";
+        $sql = "INSERT INTO user (email, nama, password, user_level) VALUES ('$email', '$nama', '$password', 'reader')";
         // use exec() because no results are returned
         $conn->exec($sql);
 

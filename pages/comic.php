@@ -49,7 +49,7 @@ if ($uri_segment[5] == 'chapter') {
                 </div>
                 <div class="col-sm-4">
                     <?php if($_SESSION['is_login']) { ?>
-                        <a class="btn btn-primary mb-3" href="<?php echo BASE_URL . '/episode' ?>">Tambah Episode</a>
+                        <a class="btn btn-primary mb-3" href="<?php echo BASE_URL . '/episode/' . $serial_id; ?>">Tambah Episode</a>
                     <?php } ?>
                     <h3><img class="mr-4" src="<?php echo ASSET_URL; ?>images/refresh.svg" alt="Updated at"
                              height="40px">Update

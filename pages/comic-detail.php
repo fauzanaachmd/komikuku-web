@@ -40,20 +40,20 @@ $serial_res = $stmt->fetch();
             <img src="<?php echo getimagesize(ASSET_URL . 'images/eps/' . $result['image']) && $result['image'] != '' ? ASSET_URL . 'images/eps/' . $result['image'] : 'http://via.placeholder.com/100x100'; ?>" alt="<?php echo $result['name']; ?>" width="100%">
         </div>
     </div>
-    <div class="row py-4">
-        <div class="col-12">
-            <div class="slideshow-chapter" data-slick='{"slidesToShow": 8, "slidesToScroll": 6}'>
-                <?php for($i=1;$i<=16;$i++) { ?>
-                <div class="p-3">
-                    <a class="d-inline-block text-center" href="#">
-                        <img src="http://via.placeholder.com/100x100" alt="Slideshow Image" width="100%">
-                        <p class="mt-3">Chapter <?php echo $i; ?></p>
-                    </a>
-                </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
+<!--    <div class="row py-4">-->
+<!--        <div class="col-12">-->
+<!--            <div class="slideshow-chapter" data-slick='{"slidesToShow": 8, "slidesToScroll": 6}'>-->
+<!--                --><?php //for($i=1;$i<=16;$i++) { ?>
+<!--                <div class="p-3">-->
+<!--                    <a class="d-inline-block text-center" href="#">-->
+<!--                        <img src="http://via.placeholder.com/100x100" alt="Slideshow Image" width="100%">-->
+<!--                        <p class="mt-3">Chapter --><?php //echo $i; ?><!--</p>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                --><?php //} ?>
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <?php
 // Update read count

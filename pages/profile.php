@@ -10,7 +10,7 @@ if($uri_segment[4] == 'ubah-password') {
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-sm-4">
-                <form action="<?php echo ASSET_URL; ?>action/updateProfile.php" method="post" enctype="multipart/form-data">
+                <form action="<?php echo ASSET_URL; ?>action/ubahPassword.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="oldPassword">Old Password</label>
                         <input type="password" class="form-control" id="oldPassword" aria-describedby="emailHelp"

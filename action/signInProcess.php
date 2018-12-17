@@ -12,7 +12,7 @@ $stmt->execute();
 $result = $stmt->fetchAll();
 
 if (count($result) == 1) {
-    if (password_verify($_POST['password'], $result[0][password])) {
+    if (password_verify($_POST['password'], $result[0]['password'])) {
         $_SESSION['is_login'] = true;
         $_SESSION['nama'] = $result[0]['nama'];
         $_SESSION['email'] = $result[0]['email'];
@@ -20,11 +20,11 @@ if (count($result) == 1) {
 
         header('Location: ' . BASE_URL);
     } else {
-        echo 'beda';
+        echo 'Password Salah';
     }
 } else {
     header('Location: ' . BASE_URL . '/sign-in?register=noEmail');
 }
 
-print_r($result);
+//print_r($result);
 //print_r($password);
